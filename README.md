@@ -1,3 +1,10 @@
-# learn_english
+# Learn English
 
-A new Flutter project.
+## Features
+
+- player de audio
+- navegação por tab
+
+## Screenshots
+
+![alt](./assets/screenshots/img1.png)
