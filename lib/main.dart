@@ -1,20 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:learn_english/telas/Home.dart';
 
-void main() {
-  runApp(const MainApp());
-}
-
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
-    );
-  }
-}
+void main() => runApp(MaterialApp(
+  home: Home(),
+  debugShowCheckedModeBanner: false,
+  theme: ThemeData(
+    primaryColor: const Color(0xff795548),
+    //accentColor: Colors.green
+    scaffoldBackgroundColor: const Color(0xfff5e9b9)
+  ),
+));

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:audioplayers/audio_cache.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 class Numeros extends StatefulWidget {
   @override
@@ -7,22 +7,20 @@ class Numeros extends StatefulWidget {
 }
 
 class _NumerosState extends State<Numeros> {
+  final AudioPlayer _audioPlayer = AudioPlayer();
 
-  AudioCache _audioCache = AudioCache(prefix: "audios/");
-
-  _executar(String nomeAudio){
-
-    _audioCache.play( nomeAudio + ".mp3");
-
+  Future<void> _executar(String nomeAudio) async {
+    try {
+      await _audioPlayer.play(AssetSource('audios/$nomeAudio.mp3'));
+    } catch (e) {
+      print("Erro ao executar o áudio: $e");
+    }
   }
 
   @override
-  void initState() {
-    super.initState();
-    _audioCache.loadAll([
-      "1.mp3", "2.mp3", "3.mp3",
-      "4.mp3", "5.mp3", "6.mp3",
-    ]);
+  void dispose() {
+    _audioPlayer.dispose();
+    super.dispose();
   }
 
   @override
@@ -30,40 +28,39 @@ class _NumerosState extends State<Numeros> {
     return GridView.count(
       crossAxisCount: 2,
       childAspectRatio: MediaQuery.of(context).size.aspectRatio * 2,
-      //scrollDirection: Axis.vertical,
       children: <Widget>[
         GestureDetector(
-          onTap: (){
+          onTap: () {
             _executar("1");
           },
           child: Image.asset("assets/imagens/1.png"),
         ),
         GestureDetector(
-          onTap: (){
+          onTap: () {
             _executar("2");
           },
           child: Image.asset("assets/imagens/2.png"),
         ),
         GestureDetector(
-          onTap: (){
+          onTap: () {
             _executar("3");
           },
           child: Image.asset("assets/imagens/3.png"),
         ),
         GestureDetector(
-          onTap: (){
+          onTap: () {
             _executar("4");
           },
           child: Image.asset("assets/imagens/4.png"),
         ),
         GestureDetector(
-          onTap: (){
+          onTap: () {
             _executar("5");
           },
           child: Image.asset("assets/imagens/5.png"),
         ),
         GestureDetector(
-          onTap: (){
+          onTap: () {
             _executar("6");
           },
           child: Image.asset("assets/imagens/6.png"),

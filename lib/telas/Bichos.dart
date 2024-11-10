@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:audioplayers/audio_cache.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 class Bichos extends StatefulWidget {
   @override
@@ -7,67 +7,68 @@ class Bichos extends StatefulWidget {
 }
 
 class _BichosState extends State<Bichos> {
+  final AudioPlayer _audioPlayer = AudioPlayer();
 
-  AudioCache _audioCache = AudioCache(prefix: "audios/");
-
-  _executar(String nomeAudio){
-
-    _audioCache.play( nomeAudio + ".mp3");
-
+  Future<void> _executar(String nomeAudio) async {
+    try {
+      await _audioPlayer.play(AssetSource('audios/$nomeAudio.mp3'));
+    } catch (e) {
+      print("Erro ao executar o áudio: $e");
+    }
   }
 
   @override
   void initState() {
     super.initState();
-    _audioCache.loadAll([
-      "cao.mp3", "gato.mp3", "leao.mp3",
-      "macaco.mp3", "ovelha.mp3", "vaca.mp3",
-    ]);
+  }
+
+  @override
+  void dispose() {
+    _audioPlayer.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-
     double largura = MediaQuery.of(context).size.width;
     double altura = MediaQuery.of(context).size.height;
 
     return GridView.count(
-        crossAxisCount: 2,
+      crossAxisCount: 2,
       childAspectRatio: MediaQuery.of(context).size.aspectRatio * 2,
-      //scrollDirection: Axis.vertical,
       children: <Widget>[
         GestureDetector(
-          onTap: (){
+          onTap: () {
             _executar("cao");
           },
           child: Image.asset("assets/imagens/cao.png"),
         ),
         GestureDetector(
-          onTap: (){
+          onTap: () {
             _executar("gato");
           },
           child: Image.asset("assets/imagens/gato.png"),
         ),
         GestureDetector(
-          onTap: (){
+          onTap: () {
             _executar("leao");
           },
           child: Image.asset("assets/imagens/leao.png"),
         ),
         GestureDetector(
-          onTap: (){
+          onTap: () {
             _executar("macaco");
           },
           child: Image.asset("assets/imagens/macaco.png"),
         ),
         GestureDetector(
-          onTap: (){
+          onTap: () {
             _executar("ovelha");
           },
           child: Image.asset("assets/imagens/ovelha.png"),
         ),
         GestureDetector(
-          onTap: (){
+          onTap: () {
             _executar("vaca");
           },
           child: Image.asset("assets/imagens/vaca.png"),

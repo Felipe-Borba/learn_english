@@ -1,6 +1,6 @@
-import 'package:aprenda_ingles/telas/Bichos.dart';
-import 'package:aprenda_ingles/telas/Numeros.dart';
-import 'package:aprenda_ingles/telas/Vogais.dart';
+import 'package:learn_english/telas/Bichos.dart';
+import 'package:learn_english/telas/Numeros.dart';
+import 'package:learn_english/telas/Vogais.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -10,7 +10,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
-  TabController _tabController;
+  late TabController _tabController;
 
   @override
   void initState() {
