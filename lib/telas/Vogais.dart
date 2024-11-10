@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Vogais extends StatefulWidget {
+  const Vogais({super.key});
+
   @override
   _VogaisState createState() => _VogaisState();
 }
